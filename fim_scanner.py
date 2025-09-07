@@ -12,7 +12,6 @@ from pathlib import Path
 from datetime import datetime
 import argparse
 
-# Для цветного вывода в консоль
 class Colors:
     RED = '\033[91m'
     GREEN = '\033[92m'
@@ -60,7 +59,6 @@ def scan_directory(directory_path):
         return None
 
 def save_baseline(data, output_file):
-    """Сохраняет baseline в JSON файл"""
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
@@ -71,7 +69,6 @@ def save_baseline(data, output_file):
         return False
 
 def load_baseline(baseline_file):
-    """Загружает baseline из JSON файла"""
     try:
         with open(baseline_file, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -80,7 +77,6 @@ def load_baseline(baseline_file):
         return None
 
 def compare_baselines(current, baseline):
-    """Сравнивает два baseline"""
     changes = {
         'new': [],      
         'deleted': [],    
@@ -102,7 +98,6 @@ def compare_baselines(current, baseline):
     return changes
 
 def print_changes(changes):
-    """Выводит результаты проверки"""
     print(f"\n{Colors.BLUE}=== РЕЗУЛЬТАТЫ ПРОВЕРКИ ==={Colors.END}")
     
     if not any(changes.values()):
@@ -163,4 +158,5 @@ def main():
         parser.print_help()
 
 if __name__ == "__main__":
+
     main()
